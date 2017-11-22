@@ -9,8 +9,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 public abstract class _PrototypeAbstract extends LinearOpMode
 {
-    _PrototypeHardwareMap robot = new _PrototypeHardwareMap();
-    public void WaitMillis (long millis){
+    Robot robot = new Robot();
+    public void WaitMillis (long millis)
+    {
         try
         {
             Thread.sleep(millis);
@@ -20,7 +21,9 @@ public abstract class _PrototypeAbstract extends LinearOpMode
             Thread.currentThread().interrupt();
         }
     }
+
+    public void TurnTicks(double power, int distance, DcMotor motor)
+    {
+        motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
 }
-public void TurnTicks(double power, int distance, DcMotor motor){
-    motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-}}

@@ -40,11 +40,11 @@ import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import com.qualcomm.robotcore.hardware.SwitchableLight;
 
 /*
- * This is an example LinearOpMode that shows how to use a color sensor in a generic
- * way, insensitive which particular make or model of color sensor is used. The opmode
- * assumes that the color sensor is configured with a name of "color sensor".
+ * This is an example LinearOpMode that shows how to use a color colorSensor in a generic
+ * way, insensitive which particular make or model of color colorSensor is used. The opmode
+ * assumes that the color colorSensor is configured with a name of "color colorSensor".
  *
- * If the color sensor has a light which is controllable, you can use the X button on
+ * If the color colorSensor has a light which is controllable, you can use the X button on
  * the gamepad to toggle the light on and off.
  *
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
@@ -54,11 +54,11 @@ import com.qualcomm.robotcore.hardware.SwitchableLight;
 
 public class SensorColorOpMode extends LinearOpMode {
 
-  /** The colorSensor field will contain a reference to our color sensor hardware object */
+  /** The colorSensor field will contain a reference to our color colorSensor hardware object */
   NormalizedColorSensor colorSensor;
   /** The relativeLayout field is used to aid in providing interesting visual feedback
    * in this sample application; you probably *don't* need something analogous when you
-   * use a color sensor on your robot */
+   * use a color colorSensor on your robot */
   View relativeLayout;
 
   /**
@@ -74,7 +74,7 @@ public class SensorColorOpMode extends LinearOpMode {
   @Override public void runOpMode() throws InterruptedException {
 
     // Get a reference to the RelativeLayout so we can later change the background
-    // color of the Robot Controller app to match the hue detected by the RGB sensor.
+    // color of the Robot Controller app to match the hue detected by the RGB colorSensor.
     int relativeLayoutId = hardwareMap.appContext.getResources().getIdentifier("RelativeLayout", "id", hardwareMap.appContext.getPackageName());
     relativeLayout = ((Activity) hardwareMap.appContext).findViewById(relativeLayoutId);
 
@@ -103,7 +103,7 @@ public class SensorColorOpMode extends LinearOpMode {
     boolean bPrevState = false;
     boolean bCurrState = false;
 
-    // Get a reference to our sensor object.
+    // Get a reference to our colorSensor object.
     colorSensor = hardwareMap.get(NormalizedColorSensor.class, "ColorSensor");
 
     // If possible, turn the light on in the beginning (it might already be on anyway,
@@ -132,12 +132,12 @@ public class SensorColorOpMode extends LinearOpMode {
       }
       bPrevState = bCurrState;
 
-      // Read the sensor
+      // Read the colorSensor
       NormalizedRGBA colors = colorSensor.getNormalizedColors();
 
       /** Use telemetry to display feedback on the driver station. We show the conversion
        * of the colors to hue, saturation and value, and display the the normalized values
-       * as returned from the sensor.
+       * as returned from the colorSensor.
        * @see <a href="http://infohost.nmt.edu/tcc/help/pubs/colortheory/web/hsv.html">HSV</a>*/
 
       Color.colorToHSV(colors.toColor(), hsvValues);
@@ -161,12 +161,12 @@ public class SensorColorOpMode extends LinearOpMode {
               .addData("b", "%02x", Color.blue(color));
 
       // Balance the colors. The values returned by getColors() are normalized relative to the
-      // maximum possible values that the sensor can measure. For example, a sensor might in a
+      // maximum possible values that the colorSensor can measure. For example, a colorSensor might in a
       // particular configuration be able to internally measure color intensity in a range of
       // [0, 10240]. In such a case, the values returned by getColors() will be divided by 10240
       // so as to return a value it the range [0,1]. However, and this is the point, even so, the
       // values we see here may not get close to 1.0 in, e.g., low light conditions where the
-      // sensor measurements don't approach their maximum limit. In such situations, the *relative*
+      // colorSensor measurements don't approach their maximum limit. In such situations, the *relative*
       // intensities of the colors are likely what is most interesting. Here, for example, we boost
       // the signal on the colors while maintaining their relative balance so as to give more
       // vibrant visual feedback on the robot controller visual display.
@@ -186,7 +186,7 @@ public class SensorColorOpMode extends LinearOpMode {
       // convert the RGB values to HSV values.
       Color.RGBToHSV(Color.red(color), Color.green(color), Color.blue(color), hsvValues);
 
-      // change the background color to match the color detected by the RGB sensor.
+      // change the background color to match the color detected by the RGB colorSensor.
       // pass a reference to the hue, saturation, and value array as an argument
       // to the HSVToColor method.
       relativeLayout.post(new Runnable() {

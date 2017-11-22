@@ -114,7 +114,7 @@ public class SensorColor extends LinearOpMode {
     }
 
     // Wait for the start button to be pressed.
-    waitForStart();
+`    waitForStart();
 
     // Loop until we are asked to stop
     while (opModeIsActive()) {
