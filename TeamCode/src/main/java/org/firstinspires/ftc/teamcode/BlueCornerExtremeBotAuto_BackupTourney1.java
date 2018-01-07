@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
  * Created by femukund on 11/5/2017.
  */
 
-@Autonomous(name="ExtremeBotAuto")
-public class ExtremeBotAuto extends LinearOpMode
+@Autonomous(name="BlueCornerExtremeBotAuto_BackupTourney1")
+public class BlueCornerExtremeBotAuto_BackupTourney1 extends LinearOpMode
 {
     Robot robot = new Robot();
 
@@ -55,16 +55,16 @@ public class ExtremeBotAuto extends LinearOpMode
         //telemetry.update();
 
         // Drive to Cryptobox
-        robot.DriveForward(drivePower, 2000);
+        robot.DriveForward(drivePower, 1000);
         robot.Brake(500);
-        robot.TankRight(drivePower, 1500);
+        robot.TankLeft(drivePower, 2000);
         robot.Brake(500);
 
         // Place the glyph
         robot.lowerLift();
         robot.openClaw();
-        robot.DriveForward(drivePower, 100);
-
+        robot.DriveForward(drivePower, 600);
+        robot.DriveBackwards(drivePower, 300);
         // Park in the triangle
 
         telemetry.addData("Say", "I am done.");

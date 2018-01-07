@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
  * Created by femukund on 11/5/2017.
  */
 
-@Autonomous(name="ExtremeBotAuto")
-public class ExtremeBotAuto extends LinearOpMode
+@Autonomous(name="BlueMiddleExtremeBotAuto")
+public class BlueMiddleExtremeBotAuto extends LinearOpMode
 {
     Robot robot = new Robot();
 
@@ -26,44 +26,51 @@ public class ExtremeBotAuto extends LinearOpMode
 
         // Hold glyph
         robot.openClaw();
+        robot.jewelServo.setPosition(0.85);
 
         waitForStart();
         robot.holdGlyph();
         robot.raiseLift();
 
         // Lower jewel servo
-        //robot.lowerJewelServo();
-        //telemetry.addData("Say", "Servo is lowered.");
-        //telemetry.update();
+        robot.lowerJewelServo();
+        telemetry.addData("Say", "Servo is lowered.");
+        telemetry.update();
 
         // Sense the color of the jewel
-        //boolean isJewelRed = robot.isJewelRed();
-        //telemetry.addData("Is Jewel Red:", isJewelRed);
+        boolean isJewelRed = robot.isJewelRed();
+        telemetry.addData("Is Jewel Red:", isJewelRed);
 
         // Knock off jewel
-        //if (isJewelRed)
-        //{
-            //robot.DriveForward(drivePower, 10);
-        //} else
-        //{
-            //robot.DriveBackwards(drivePower, 10);
-        //}
+        long driveBackTime = 1400;
+        if (isJewelRed)
+        {
+            robot.DriveBackwards(drivePower, 205);
+            robot.Brake(500);
+            driveBackTime = 1240;
+        } else
+        {
+            robot.DriveForward(drivePower, 205);
+            robot.Brake(500);
+            driveBackTime = 1400;
+        }
 
         // Raise jewel servo
-        //robot.raiseJewelServo();
-        //telemetry.addData("Say", "Servo is raised.");
-        //telemetry.update();
+        robot.raiseJewelServo();
+        telemetry.addData("Say", "Servo is raised.");
+        telemetry.update();
 
         // Drive to Cryptobox
-        robot.DriveForward(drivePower, 2000);
+        robot.DriveBackwards(0.8, driveBackTime);
         robot.Brake(500);
-        robot.TankRight(drivePower, 1500);
+        robot.TankLeft(1, 2600);
         robot.Brake(500);
 
         // Place the glyph
         robot.lowerLift();
         robot.openClaw();
-        robot.DriveForward(drivePower, 100);
+        robot.DriveForward(drivePower, 500);
+        robot.DriveBackwards(drivePower, 300);
 
         // Park in the triangle
 

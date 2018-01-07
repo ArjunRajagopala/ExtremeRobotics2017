@@ -10,7 +10,7 @@ import static android.R.attr.right;
  * Created by femukund on 10/29/2017.
  */
 @TeleOp
-public class ExtremeBotDrive extends LinearOpMode
+public class ExtremeBotDrive_BackupTourney1 extends LinearOpMode
 {
     Robot robot = new Robot();
 
@@ -32,8 +32,6 @@ public class ExtremeBotDrive extends LinearOpMode
         telemetry.addData("Status", "Initialized");
         robot.init(hardwareMap, this);
         telemetry.update();
-
-        robot.jewelServo.setPosition(0.85);
 
         // Wait for game to start (driver presses PLAY
         waitForStart();
